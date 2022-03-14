@@ -162,6 +162,12 @@ class WidgetBase(object):
 
         attrs = self.build_attrs(self.attrs, attrs, autocomplete=autocomplete)
 
+        # django 3 gestisce il required in maniera diversa ora, non controlla lato
+        # server ma aggiunge l'attr required nel template bloccando il campo nascosto
+        # quindi lo elimino per evitare blocchi lato browser
+        if 'required' in attrs.keys():
+            attrs.pop('required')
+
         self.html_id = attrs.pop('id', name)
 
         choices = autocomplete.choices_for_values()
