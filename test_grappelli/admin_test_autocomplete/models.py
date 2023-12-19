@@ -3,7 +3,7 @@ from django.db import models
 
 class Foo(models.Model):
     name = models.CharField(max_length=100)
-    bar = models.ForeignKey('Bar', related_name='bar_fk')
+    bar = models.ForeignKey('Bar', related_name='bar_fk', on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.name

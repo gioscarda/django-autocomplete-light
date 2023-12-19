@@ -21,11 +21,11 @@ except ImportError:
 @python_2_unicode_compatible
 class FkModel(models.Model):
     name = models.CharField(max_length=200)
-    relation = models.ForeignKey('self', null=True, blank=True)
-    noise = models.ForeignKey('OtoModel', null=True, blank=True)
+    relation = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    noise = models.ForeignKey('OtoModel', null=True, blank=True, on_delete=models.CASCADE)
 
     for_inline = models.ForeignKey('self', null=True, blank=True,
-                                   related_name='reverse_for_inline')
+                                   related_name='reverse_for_inline', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -33,11 +33,11 @@ class FkModel(models.Model):
 @python_2_unicode_compatible
 class OtoModel(models.Model):
     name = models.CharField(max_length=200)
-    relation = models.OneToOneField('self', null=True, blank=True)
-    noise = models.ForeignKey('FkModel', null=True, blank=True)
+    relation = models.OneToOneField('self', null=True, blank=True, on_delete=models.CASCADE)
+    noise = models.ForeignKey('FkModel', null=True, blank=True, on_delete=models.CASCADE)
 
     for_inline = models.ForeignKey('self', null=True, blank=True,
-                                   related_name='inline')
+                                   related_name='inline', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -46,10 +46,10 @@ class OtoModel(models.Model):
 class MtmModel(models.Model):
     name = models.CharField(max_length=200)
     relation = models.ManyToManyField('self', blank=True)
-    noise = models.ForeignKey('FkModel', null=True, blank=True)
+    noise = models.ForeignKey('FkModel', null=True, blank=True, on_delete=models.CASCADE)
 
     for_inline = models.ForeignKey('self', null=True, blank=True,
-                                   related_name='inline')
+                                   related_name='inline', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -58,14 +58,14 @@ class MtmModel(models.Model):
 class GfkModel(models.Model):
     name = models.CharField(max_length=200)
 
-    content_type = models.ForeignKey(ContentType, null=True, blank=True)
+    content_type = models.ForeignKey(ContentType, null=True, blank=True, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField(null=True, blank=True)
     relation = GenericForeignKey('content_type', 'object_id')
 
-    noise = models.ForeignKey('FkModel', null=True, blank=True)
+    noise = models.ForeignKey('FkModel', null=True, blank=True, on_delete=models.CASCADE)
 
     for_inline = models.ForeignKey('self', null=True, blank=True,
-                                   related_name='inline')
+                                   related_name='inline', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -76,9 +76,9 @@ if RelatedObjectsDescriptor:
         name = models.CharField(max_length=200)
         relation = RelatedObjectsDescriptor()
 
-        noise = models.ForeignKey('FkModel', null=True, blank=True)
+        noise = models.ForeignKey('FkModel', null=True, blank=True, on_delete=models.CASCADE)
         for_inline = models.ForeignKey('self', null=True, blank=True,
-                                       related_name='inline')
+                                       related_name='inline', on_delete=models.CASCADE)
 
         def __str__(self):
             return self.name
@@ -88,11 +88,11 @@ if TaggableManager:
     @python_2_unicode_compatible
     class TaggitModel(models.Model):
         name = models.CharField(max_length=200)
-        noise = models.ForeignKey('FkModel', null=True, blank=True)
+        noise = models.ForeignKey('FkModel', null=True, blank=True, on_delete=models.CASCADE)
         relation = TaggableManager()
 
         for_inline = models.ForeignKey('self', null=True, blank=True,
-                                       related_name='inline')
+                                       related_name='inline', on_delete=models.CASCADE)
         def __str__(self):
             return self.name
 
@@ -101,11 +101,11 @@ if TaggableManager:
 class FullModel(models.Model):
     name = models.CharField(max_length=200)
 
-    oto = models.OneToOneField('self', related_name='reverse_oto')
-    fk = models.ForeignKey('self', related_name='reverse_fk')
+    oto = models.OneToOneField('self', related_name='reverse_oto', on_delete=models.CASCADE)
+    fk = models.ForeignKey('self', related_name='reverse_fk', on_delete=models.CASCADE)
     mtm = models.ManyToManyField('self', related_name='reverse_mtm')
 
-    content_type = models.ForeignKey(ContentType)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     gfk = GenericForeignKey("content_type", "object_id")
 

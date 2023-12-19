@@ -17,11 +17,11 @@ class Group(models.Model):
 
 class NonIntegerPk(models.Model):
     name = models.CharField(primary_key=True, max_length=10)
-    relation = models.ForeignKey('self', null=True, blank=True)
-    noise = models.ForeignKey('basic.FkModel', null=True, blank=True)
+    relation = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    noise = models.ForeignKey('basic.FkModel', null=True, blank=True, on_delete=models.CASCADE)
 
     for_inline = models.ForeignKey('self', null=True, blank=True,
-                                   related_name='inline')
+                                   related_name='inline', on_delete=models.CASCADE)
 
 
 class CustomIntegerPk(models.Model):

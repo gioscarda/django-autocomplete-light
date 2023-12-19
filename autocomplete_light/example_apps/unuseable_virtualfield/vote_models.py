@@ -52,8 +52,8 @@ class VoteManger(models.Manager):
         return super(VoteManger, self).filter(*args, **kwargs)
     
 class Vote(models.Model):
-    user = models.ForeignKey(AUTH_USER_MODEL)
-    content_type = models.ForeignKey(ContentType)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
     create_at = models.DateTimeField(auto_now_add=True)

@@ -14,7 +14,7 @@ class Genre(models.Model):
 class Artist(models.Model):
     name = models.CharField(max_length=100)
 
-    genre = models.ForeignKey(Genre)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return '%s %s' % (self.name, self.genre)

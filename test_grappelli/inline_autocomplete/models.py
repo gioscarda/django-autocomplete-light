@@ -9,8 +9,8 @@ class City(models.Model):
 
 
 class Trip_City(models.Model):
-    trip = models.ForeignKey('Trip')
-    city = models.ForeignKey('City')
+    trip = models.ForeignKey('Trip', on_delete=models.CASCADE)
+    city = models.ForeignKey('City', on_delete=models.CASCADE)
     order = models.PositiveSmallIntegerField()
 
     class Meta:

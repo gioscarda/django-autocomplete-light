@@ -6,7 +6,7 @@ from tagging.fields import TagField
 class Taggable(models.Model):
     name = models.CharField(max_length=50)
     tags = TagField(null=True, blank=True)
-    parent = models.ForeignKey('self', null=True, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.name
