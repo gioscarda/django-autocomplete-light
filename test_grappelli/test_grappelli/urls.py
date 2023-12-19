@@ -7,7 +7,7 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    re_path(r'^admin/', include(admin.site.urls)),
+    re_path(r'^admin/', admin.site.urls),
     re_path(r'^grappelli/', include('grappelli.urls')),
     re_path(r'autocomplete/', include('autocomplete_light.urls')),
 ]

@@ -16,7 +16,7 @@ urlpatterns = ['',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    re_path(r'^admin/', include(admin.site.urls)),
+    re_path(r'^admin/', admin.site.urls),
 
     re_path(r'^autocomplete/', include('autocomplete_light.urls')),
     re_path(r'^navigation/', include('navigation_autocomplete.urls')),
