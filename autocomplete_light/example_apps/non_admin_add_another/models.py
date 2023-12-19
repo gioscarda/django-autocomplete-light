@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.core import urlresolvers
+from django.urls import reverse
 from django.db import models
 from six import python_2_unicode_compatible
 
@@ -11,7 +11,7 @@ class NonAdminAddAnotherModel(models.Model):
     widgets = models.ManyToManyField('self', blank=True)
 
     def get_absolute_url(self):
-        return urlresolvers.reverse(
+        return reverse(
             'non_admin_add_another_model_update', args=(self.pk,))
 
     def __str__(self):
