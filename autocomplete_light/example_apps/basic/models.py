@@ -103,7 +103,7 @@ class FullModel(models.Model):
 
     oto = models.OneToOneField('self', related_name='reverse_oto', on_delete=models.CASCADE)
     fk = models.ForeignKey('self', related_name='reverse_fk', on_delete=models.CASCADE)
-    mtm = models.ManyToManyField('self', related_name='reverse_mtm')
+    mtm = models.ManyToManyField('self')
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()

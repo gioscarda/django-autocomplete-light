@@ -233,3 +233,5 @@ SOUTH_MIGRATION_MODULES = {
     'cities_light': 'cities_light.south_migrations',
     'admin_autocomplete_in_row': 'ignore',
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
