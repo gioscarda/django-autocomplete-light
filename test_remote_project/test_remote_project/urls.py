@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, re_path
 
 import autocomplete_light
 autocomplete_light.autodiscover()
@@ -7,7 +7,7 @@ autocomplete_light.autodiscover()
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = ['',
     # Examples:
     # url(r'^$', 'test_project.views.home', name='home'),
     # url(r'^test_project/', include('test_project.foo.urls')),
@@ -16,8 +16,8 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    re_path(r'^admin/', include(admin.site.urls)),
 
-    url(r'^autocomplete/', include('autocomplete_light.urls')),
-    url(r'^navigation/', include('navigation_autocomplete.urls')),
-)
+    re_path(r'^autocomplete/', include('autocomplete_light.urls')),
+    re_path(r'^navigation/', include('navigation_autocomplete.urls')),
+]
