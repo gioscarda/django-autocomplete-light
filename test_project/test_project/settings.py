@@ -2,7 +2,7 @@
 import os.path
 import django
 
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 TEMPLATE_DEBUG = DEBUG
 LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'INFO')
 
@@ -112,7 +112,7 @@ LOGGING = {
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 from socket import gethostname
 ALLOWED_HOSTS = [
-    gethostname(),
+    gethostname(), 'localhost'
 ]
 
 DNS = os.environ.get('OPENSHIFT_APP_DNS', None),
@@ -149,13 +149,14 @@ if django.VERSION < (1, 8):
     )
 else:
     TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.contrib.auth.context_processors.auth',
         'django.template.context_processors.debug',
+        'django.template.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
         'django.template.context_processors.i18n',
         'django.template.context_processors.media',
         'django.template.context_processors.static',
-        'django.template.context_processors.tz',
-        'django.contrib.messages.context_processors.messages'
+        'django.template.context_processors.tz'
     )
 
 
