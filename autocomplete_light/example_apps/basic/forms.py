@@ -3,10 +3,10 @@ from django import VERSION
 
 from .models import *
 
-try:
-    import genericm2m
-except ImportError:
-    genericm2m = None
+# try:
+#     import genericm2m
+# except ImportError:
+genericm2m = None
 
 try:
     import taggit

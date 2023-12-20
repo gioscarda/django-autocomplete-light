@@ -7,10 +7,10 @@ try:
 except ImportError:
     from django.contrib.contenttypes.generic import GenericForeignKey
 
-try:
-    from genericm2m.models import RelatedObjectsDescriptor
-except ImportError:
-    RelatedObjectsDescriptor = None
+# try:
+#     from genericm2m.models import RelatedObjectsDescriptor
+# except ImportError:
+RelatedObjectsDescriptor = None
 
 try:
     from taggit.managers import TaggableManager

@@ -213,12 +213,12 @@ if django.VERSION >= (1, 5):
         'autocomplete_light.example_apps.unuseable_virtualfield',
     )
 
-try:
-    import genericm2m
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('genericm2m',)
+# try:
+#     import genericm2m
+# except ImportError:
+#     pass
+# else:
+#     INSTALLED_APPS += ('genericm2m',)
 
 try:
     import taggit

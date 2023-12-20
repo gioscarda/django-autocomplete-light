@@ -3,10 +3,10 @@ from django.contrib import admin
 from .forms import *
 from .models import *
 
-try:
-    import genericm2m
-except ImportError:
-    genericm2m = None
+# try:
+#     import genericm2m
+# except ImportError:
+genericm2m = None
 
 try:
     import taggit
